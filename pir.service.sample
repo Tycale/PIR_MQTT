@@ -1,0 +1,17 @@
+[Unit]
+Description=PIR over MQTT
+After=network-online.target
+After=openvpn-client@pizeroportegarage
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python /root/PIRMonitor/PIRMQTT.py
+Environment=MQTT_USERNAME=..
+Environment=MQTT_PASSWORD=..
+Environment=MQTT_SERVER=mqtt://X.X.X.X:1883
+Environment=MQTT_CLIENT_ID=my_pir
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
